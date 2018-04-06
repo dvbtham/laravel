@@ -8,9 +8,10 @@
     <meta name="author" content="Tham Davies">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/app.css">
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.8.1/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <title>@yield('title') | Contact App</title>
+    <title>@yield('title') | SMS</title>
   </head>
   <body>
     

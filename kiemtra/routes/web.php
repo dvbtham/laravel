@@ -11,4 +11,6 @@
 |
 */
 
-Route::resource('personal', 'PersonalController');
+Route::resource('personal', 'StudentController');
+Route::resource('class', 'ClassController');
+Route::get('class/{classId}/students', 'ClassController@getStudents')->name('class.students');;

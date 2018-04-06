@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="card-header">
-                            <h4>Personal Info</h4>
+                            <h4>Student Info</h4>
                             @foreach ($errors->all() as $error)     
                                 <p class="alert alert-danger">{{ $error }}</p>
                             @endforeach
@@ -37,7 +37,13 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-md-12">
+                            {{ Form::label('Class', null, ['class' => 'col-form-label']) }}
+                            {{
+                                Form::select('class_id', $classes, null, ['class' => 'form-control'])
+                            }}
+                        </div>
+                        <br/>
                         <div class="col-md-12">
                             <div class="form-group">
                                 {{ Form::label('Birthday', null, ['class' => 'col-form-label']) }}                               
@@ -60,7 +66,7 @@
                         <div class="col-md-12">
                                 {{ Form::label('Hobbies', null, ['class' => 'col-form-label']) }}
                                 {{
-                                    Form::select('hobbies', ['Camping' => 'Camping', 'Travel' => 'Travel', 'Shopping' => 'Shopping'], $person ->hobbies, ['class' => 'form-control'])
+                                    Form::select('hobbies', ['Camping' => 'Camping', 'Travel' => 'Travel', 'Shopping' => 'Shopping'], null, ['class' => 'form-control'])
                                 }}
                             </div>
                         <br>
