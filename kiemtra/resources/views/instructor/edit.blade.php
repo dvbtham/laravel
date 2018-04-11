@@ -3,7 +3,7 @@
 @section('body')
     <div class="container">
         <div class="row">   
-            {!! Form::model($instructor, ['route' => ['instructors.update', $instructor -> id], 'method' => 'PUT', 'class' => 'col-md-12']) !!}      
+            {!! Form::model($instructor, ['route' => ['instructors.update', $instructor -> id], 'method' => 'PUT', 'class' => 'col-md-12', 'files'=> true]) !!}      
             <div class="col col-lg-12 float-left">
                 <div class="card">
                     <div class="card-block">
@@ -31,6 +31,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            {{ Form::label('Avatar', null, ['class' => 'col-form-label']) }}
+                            {{ Form::file('image', ['class' => 'form-control']) }}
+                        </div>
+                        <br/>
                         <div class="col-md-12">
                             {{ Form::label('Subjects', null, ['class' => 'col-form-label']) }}
                             {{

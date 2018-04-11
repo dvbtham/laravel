@@ -8,6 +8,8 @@ use App\Instructor;
 use App\Subject;
 use Illuminate\Http\Request;
 use Session;
+use Image;
+use Storage;
 
 class InstructorController extends Controller
 {
@@ -51,14 +53,17 @@ class InstructorController extends Controller
                 'nickname' => $request->nickname,
                 'address' => $request->address,
             ));
+            
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $fileName = time(). ".". $image->getClientOriginalExtension();
+                $location = public_path("images/". $fileName);
+                Image::make($image)->resize(200, 200)->save($location);
+                $instructor->image = $fileName;
+            }
 
         $instructor->save();
-
-        // if (isset($request->subjects)) {
-        //     $instructor->subjects()->sync($request->subjects);
-        // } else {
-        //     $instructor->subjects()->sync(array());
-        // }
+        
         $instructor->subjects()->sync($request->subjects, false);
 
         Session::flash('success', "Instructor was successfully created.");
@@ -116,6 +121,16 @@ class InstructorController extends Controller
         $instructor->address = $request->address;
         $instructor->gender = $request->egender;
 
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName = time(). ".". $image->getClientOriginalExtension();
+            $location = public_path("images/". $fileName);
+            Image::make($image)->resize(200, 200)->save($location);
+            $oldFileName = $instructor->image;
+            $instructor->image = $fileName;
+            Storage::delete($oldFileName);
+        }
+
         $instructor->save();
 
         if (isset($request->subjects)) {
@@ -139,6 +154,7 @@ class InstructorController extends Controller
     {
         $instructor = Instructor::findOrFail($id);
         $instructor->delete();
+        Storage::delete($instructor->image);
         return response()->json();
     }
 }

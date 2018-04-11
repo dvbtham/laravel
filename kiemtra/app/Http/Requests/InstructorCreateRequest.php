@@ -28,7 +28,8 @@ class InstructorCreateRequest extends FormRequest
             'gender' => 'required',
             'email' => 'required|max:150',
             'phone' => 'required',
-            'birthday' => 'required'
+            'birthday' => 'required',
+            'image' => 'mimes:jpeg,bmp,png'
         ];
     }
 }

@@ -10,7 +10,12 @@
                             <h4>Instructor Info</h4>
                         </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Fullname: {{ $instructor->fullname }}</li>
+                            <li class="list-group-item">
+                                <img class="img img-circle" 
+                                    width="150" src="{{ asset('images/'. $instructor->image) }}" 
+                                    alt="{{ $instructor->fullname }}">
+                            </li>
+                            <li class="list-group-item">Fullname: {{ $instructor->fullname }}</li>
                             <li class="list-group-item">Gender: &nbsp; <?php echo $instructor ->gender == 0 ? "<i class='fa fa-male'></i> Male" : "<i class='fa fa-female'></i> Female"
                             ?>  </li>
                             <li class="list-group-item">Birthday: {{ \Carbon\Carbon::parse($instructor ->birthday)->format('d/m/Y') }}</li>

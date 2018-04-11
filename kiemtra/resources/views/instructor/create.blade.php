@@ -3,7 +3,7 @@
 @section('body')
     <div class="container">
         <div class="row">   
-            {!! Form::open(['route' => 'instructors.store', 'class' => 'col-md-12']) !!}  
+            {!! Form::open(['route' => 'instructors.store', 'class' => 'col-md-12', 'files'=> true]) !!}  
          
             <div class="col col-lg-12 float-left">
                 <div class="card">
@@ -32,6 +32,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            {{ Form::label('Avatar', null, ['class' => 'col-form-label']) }}
+                            {{ Form::file('image', ['class' => 'form-control']) }}
+                        </div>
+                        <br/>
                         <div class="col-md-12">
                                 {{ Form::label('Subjects', null, ['class' => 'col-form-label']) }}
                            <select class="form-control select-multiple" name="subjects[]" id="subjects" multiple>
