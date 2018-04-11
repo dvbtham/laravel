@@ -55,10 +55,7 @@ class InstructorController extends Controller
             ));
             
             if($request->hasFile('image')){
-                $image = $request->file('image');
-                $fileName = time(). ".". $image->getClientOriginalExtension();
-                $location = public_path("images/". $fileName);
-                Image::make($image)->resize(200, 200)->save($location);
+                $fileName = $this->addImage($instructor, $request);
                 $instructor->image = $fileName;
             }
 
@@ -69,6 +66,14 @@ class InstructorController extends Controller
         Session::flash('success', "Instructor was successfully created.");
 
         return redirect()->route('instructors.index');
+    }
+
+    private function addImage (Instructor $instructor, Request $request){
+        $image = $request->file('image');
+        $fileName = time(). ".". $image->getClientOriginalExtension();
+        $location = public_path("images/". $fileName);
+        Image::make($image)->resize(200, 200)->save($location);
+        return $fileName;
     }
 
     /**
@@ -122,10 +127,7 @@ class InstructorController extends Controller
         $instructor->gender = $request->egender;
 
         if($request->hasFile('image')){
-            $image = $request->file('image');
-            $fileName = time(). ".". $image->getClientOriginalExtension();
-            $location = public_path("images/". $fileName);
-            Image::make($image)->resize(200, 200)->save($location);
+            $fileName = $this->addImage($instructor, $request);
             $oldFileName = $instructor->image;
             $instructor->image = $fileName;
             Storage::delete($oldFileName);
