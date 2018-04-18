@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\mClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -27,7 +28,9 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('class.create');
+        $departments = Department::pluck("name", "id");
+        $departments->prepend('-- Chọn khoa --', '');
+        return view('class.create', compact('departments'));
     }
 
     public function getStudents($classId)
@@ -49,6 +52,7 @@ class ClassController extends Controller
         ]);
         $class = new mClass([
             'class_name' => $request->class_name,
+            'department_id' => $request->department_id
         ]);
 
         $class->save();
@@ -81,7 +85,10 @@ class ClassController extends Controller
     {
         $class = mClass::findOrFail($id);
 
-        return view('class.edit', compact('class'));
+        $departments = Department::pluck("name", "id");
+        $departments->prepend('-- Chọn khoa --', '');
+
+        return view('class.edit', compact(['class', 'departments']));
     }
 
     /**
@@ -94,11 +101,12 @@ class ClassController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'class_name' => 'required|unique:classes|max:250',
+            'class_name' => 'required|max:250',
         ]);
 
         $class = mClass::findOrFail($id);
 
+        $class->department_id = $request->department_id;
         $class->class_name = $request->class_name;
 
         $class->save();

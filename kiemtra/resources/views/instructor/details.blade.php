@@ -43,7 +43,7 @@
                             <ul class="list-group list-group-flush">
                                 @foreach($instructor->subjects as $subject)
                                 <li class="list-group-item">
-                                        Subject name: <a href="{{ route('subjects.edit', $subject->id) }}">{{ $subject->title }}</a>
+                                        Subject name: <a href="{{ route('subjects.show', $subject->id) }}">{{ $subject->title }}</a>
                                         <br/>
                                         Credit: <span class="badge badge badge-primary">{{ $subject->credit }}</span>
                                 </li>

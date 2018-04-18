@@ -15,4 +15,5 @@ Route::resource('personal', 'StudentController');
 Route::resource('class', 'ClassController');
 Route::resource('subjects', 'SubjectController');
 Route::resource('instructors', 'InstructorController');
+Route::resource('departments', 'DepartmentController');
 Route::get('class/{classId}/students', 'ClassController@getStudents')->name('class.students');;

@@ -10,6 +10,7 @@
             <thead>
               <tr>
                 <th>Class name</th>
+                <th>Department</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -17,6 +18,7 @@
               @foreach($classes as $c)
                 <tr>
                     <td>{{ $c ->class_name }} </td>
+                    <td>{{ $c ->department['name'] }} </td>
                     <td>
                         <a class="btn btn-info btn-sm" href="{{ route('class.edit', $c -> id) }}">
                           <i class="fa fa-edit"></i> Edit

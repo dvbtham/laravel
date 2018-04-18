@@ -60,7 +60,8 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        
+        $subject = Subject::findOrFail($id);        
+        return view("subject.show", compact(['subject','instructors']));
     }
 
     /**

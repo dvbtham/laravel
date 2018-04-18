@@ -9,6 +9,9 @@
         <li class="nav-item {{ (\Request::route()->getName() == 'home') ? 'active' : '' }}" href="{{ url('/') }}">
           <a class="nav-link">Home <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item {{ (\Request::route()->getName() == 'departments.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('departments.index') }}">Department</a>
+          </li>
         <li class="nav-item {{ (\Request::route()->getName() == 'personal.index') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('personal.index') }}">Students</a>
         </li>

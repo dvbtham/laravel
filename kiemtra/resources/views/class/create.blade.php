@@ -15,6 +15,13 @@
                             @endforeach
                         </div>
                         <div class="col-md-12">
+                                {{ Form::label('Department', null, ['class' => 'col-form-label']) }}
+                                {{
+                                    Form::select('department_id', $departments, null, ['class' => 'form-control'])
+                                }}
+                            </div>
+                            <br/>
+                        <div class="col-md-12">
                             {{ Form::label('Class name', null, ['class' => 'col-form-label']) }}
                             {{ Form::text('class_name', '', ['class' => 'form-control']) }}
                         </div>

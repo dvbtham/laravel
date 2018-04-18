@@ -85,8 +85,7 @@ class InstructorController extends Controller
     public function show($id)
     {
         $instructor = Instructor::findOrFail($id);
-        $subjects = Instructor::findOrFail($id)->subjects();
-        return view('instructor.details', compact(['instructor','subjects']));
+        return view('instructor.details', compact(['instructor']));
     }
 
     /**
